@@ -1,6 +1,7 @@
 from pynput import keyboard
 
 def on_activate():
+    #fica merda de coment
     print('Global hotkey activated!')
 
 def for_canonical(f):
@@ -13,3 +14,4 @@ with keyboard.Listener(
         on_press=for_canonical(hotkey.press),
         on_release=for_canonical(hotkey.release)) as l:
     l.join()
+#aaaa
