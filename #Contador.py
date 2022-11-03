@@ -12,8 +12,8 @@ def on_activate():
     contx = int(contx)
     contx = 1 + contx
     print(contx)
-    #file.write(contx)
-    #file.close()
+    #file2.write(contx)
+    #file2.close()
 
 def for_canonical(f):
     return lambda k: f(l.canonical(k))
