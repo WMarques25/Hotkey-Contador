@@ -1,4 +1,4 @@
-#hotkey in
+# Hotkey in
 # -*- coding: UTF-8 -*-
 from pynput import keyboard
 
