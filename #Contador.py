@@ -15,7 +15,7 @@ def on_activate():
     #print(contx)
     file.write(contx)
     file.close()
-    print('Global hotkey activated!' + contx)
+    print('Global hotkey activated!' + " " + contx)
 
 def for_canonical(f):
     return lambda k: f(l.canonical(k))
