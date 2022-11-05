@@ -3,17 +3,19 @@
 from pynput import keyboard
 
 def on_activate():
-    print('Global hotkey activated!')
+    
     file = open("Contador.txt","r")
     contx = file.readline()
-    print(contx)
+    #print(contx)
     file.close()
-    #file2 = open("Contador.txt","w")
+    file = open("Contador.txt","w")
     contx = int(contx)
     contx = 1 + contx
-    print(contx)
-    #file2.write(contx)
-    #file2.close()
+    contx = str(contx)
+    #print(contx)
+    file.write(contx)
+    file.close()
+    print('Global hotkey activated!' + contx)
 
 def for_canonical(f):
     return lambda k: f(l.canonical(k))
