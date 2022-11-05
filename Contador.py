@@ -1,18 +1,16 @@
-#Contador
+# Contador
 # -*- coding: UTF-8 -*-
 from pynput import keyboard
 
 def on_activate():
     
     file = open("Contador.txt","r")
-    contx = file.readline()
-    #print(contx)
+    contx = file.readline() 
     file.close()
     file = open("Contador.txt","w")
     contx = int(contx)
     contx = 1 + contx
-    contx = str(contx)
-    #print(contx)
+    contx = str(contx)    
     file.write(contx)
     file.close()
     print('Global hotkey activated!' + " " + contx)
@@ -20,9 +18,9 @@ def on_activate():
 def for_canonical(f):
     return lambda k: f(l.canonical(k))
 
-#with open("Hotkey.txt", "r") as text_file:
-#    data = text_file.readlines()
-#HKs = data[1] - para pegar a segunda linha.
+# with open("Hotkey.txt", "r") as text_file:
+#     data = text_file.readlines()
+# HKs = data[1] - para pegar a segunda linha.
 
 try:
     file = open("Contador.txt","x")
