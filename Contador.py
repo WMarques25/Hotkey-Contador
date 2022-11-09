@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 from pynput import keyboard
 
-def on_activate():
+def ContUp():
     
     file = open("Contador.txt","r")
     contx = file.readline() 
@@ -13,31 +13,59 @@ def on_activate():
     contx = str(contx)    
     file.write(contx)
     file.close()
-    print('Global hotkey activated!' + " " + contx)
+    print('Hotkey +!' + " " + contx)
 
-def for_canonical(f):
-    return lambda k: f(l.canonical(k))
+def ContDown():
+    
+    file = open("Contador.txt","r")
+    contx = file.readline() 
+    file.close()
+    file = open("Contador.txt","w")
+    contx = int(contx)
+    contx = contx -1
+    contx = str(contx)    
+    file.write(contx)
+    file.close()
+    print('Hotkey -!' + " " + contx)
 
-# with open("Hotkey.txt", "r") as text_file:
-#     data = text_file.readlines()
-# HKs = data[1] - para pegar a segunda linha.
+def ContZero():
+    file = open("Contador.txt","w")
+    file.write('0')
+    file.close()
 
+Vhk = []
 try:
     file = open("Contador.txt","x")
+    file.write('0')
     file.close()
-    file2 = open("Contador.txt","w")
-    file2.write('0')
-    file2.close()
+
+except:
+    ContZero()
+    
 finally:
     HK = open("Hotkey.txt","r")
-    HKs = HK.readline()
+    HKl = HK.read()
+    x = HKl.find("\n")
     HK.close()
-    print("Hotkey gravada é: " + HKs)
+    
+    #with open('Hotkey.txt','r') as HK:
+     #   Vhk.append(HK.readline())
+      #  print(Vhk)
 
-    hotkey = keyboard.HotKey(
-        keyboard.HotKey.parse(HKs),
-        on_activate)
-    with keyboard.Listener(
-            on_press=for_canonical(hotkey.press),
-            on_release=for_canonical(hotkey.release)) as l:
-        l.join()
+   # HKp = Vhk[0]
+   # HKm = Vhk[1]
+   # HKz = Vhk[2]
+
+    HK = open("Hotkey.txt","r")
+    HKp = HK.readline(x)
+    limpador = HK.read(1) # Variavel para limpar o '\n' do "Hotkey.txt"
+    HKm = HK.read()
+    #limpador = HK.read(1)
+    #HKz = HK.readline()
+    HK.close()
+    print("AS Hotkeys gravadas são:\n" + HKp + " para +\n" + HKm + " para -.\n")
+
+    with keyboard.GlobalHotKeys({
+        HKp: ContUp,
+        HKm: ContDown}) as h:
+        h.join()
