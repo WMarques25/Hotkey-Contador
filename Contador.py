@@ -34,6 +34,7 @@ try:
     file = open("Contador.txt","x")
     file.write('0')
     file.close()
+    print("O contador está em: 0\n")
 
 except:
     with open('Contador.txt','r') as f:
