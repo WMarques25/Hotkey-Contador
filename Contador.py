@@ -3,69 +3,60 @@
 from pynput import keyboard
 
 def ContUp():
-    
-    file = open("Contador.txt","r")
-    contx = file.readline() 
-    file.close()
-    file = open("Contador.txt","w")
-    contx = int(contx)
-    contx = 1 + contx
-    contx = str(contx)    
-    file.write(contx)
-    file.close()
-    print('Hotkey +!' + " " + contx)
+    with open("Contador.txt",'r') as file:
+        cont = file.readline()
+        cont = int(cont)
+        cont +=1
+        cont = str(cont)
+        with open("Contador.txt",'w') as file:
+            file.write(cont)
+        
+    print('Hotkey +! ', cont)
 
 def ContDown():
-    
-    file = open("Contador.txt","r")
-    contx = file.readline() 
-    file.close()
-    file = open("Contador.txt","w")
-    contx = int(contx)
-    contx = contx -1
-    contx = str(contx)    
-    file.write(contx)
-    file.close()
-    print('Hotkey -!' + " " + contx)
+    with open("Contador.txt",'r') as file:
+        cont = file.readline()
+        cont = int(cont)
+        cont -=1
+        cont = str(cont)
+        with open("Contador.txt",'w') as file:
+            file.write(cont)
+
+    print('Hotkey -! ', cont)
 
 def ContZero():
     file = open("Contador.txt","w")
     file.write('0')
     file.close()
-
-Vhk = []
+    print("\n-*- Contagem zerada! -*-\n")
+            
 try:
     file = open("Contador.txt","x")
     file.write('0')
     file.close()
 
 except:
-    ContZero()
+    with open('Contador.txt','r') as f:
+        cont = f.readline()
+    print("O contador está em: ",cont,"\n  Deseja zerar o contador? ('S' p/ SIM)")
+    x = input()
+    if x.upper() == 'S':
+        ContZero()
+    else:
+        print("")
     
-finally:
-    HK = open("Hotkey.txt","r")
-    HKl = HK.read()
-    x = HKl.find("\n")
-    HK.close()
-    
-    #with open('Hotkey.txt','r') as HK:
-     #   Vhk.append(HK.readline())
-      #  print(Vhk)
+finally: 
+    with open('Hotkey.txt','r') as f:
+        HKp = f.readline()
+        HKm = f.readline()
+        HKz = f.readline()
+    HKp = HKp[:-1]  #Limpando o '\n' das linhas em "Hotkey.txt"
+    HKm = HKm[:-1]
 
-   # HKp = Vhk[0]
-   # HKm = Vhk[1]
-   # HKz = Vhk[2]
-
-    HK = open("Hotkey.txt","r")
-    HKp = HK.readline(x)
-    limpador = HK.read(1) # Variavel para limpar o '\n' do "Hotkey.txt"
-    HKm = HK.read()
-    #limpador = HK.read(1)
-    #HKz = HK.readline()
-    HK.close()
-    print("AS Hotkeys gravadas são:\n" + HKp + " para +\n" + HKm + " para -.\n")
+    print("AS Hotkeys gravadas são:\n" + HKp + " para +\n" + HKm + " para -\n" + HKz + " para zerar.\n\n")
 
     with keyboard.GlobalHotKeys({
         HKp: ContUp,
-        HKm: ContDown}) as h:
+        HKm: ContDown,
+        HKz: ContZero}) as h:
         h.join()
