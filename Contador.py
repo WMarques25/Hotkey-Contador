@@ -29,7 +29,8 @@ def ContZero():
     file.write('0')
     file.close()
     print("\n-*- Contagem zerada! -*-\n")
-            
+
+# def Contador():       transformar em função, criar inteface, mostrar HKs contagem e log de contagens, botoes para alterar HKs, e iniciar/parar contagem.
 try:
     file = open("Contador.txt","x")
     file.write('0')
