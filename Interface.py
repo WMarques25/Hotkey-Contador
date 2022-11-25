@@ -4,7 +4,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import *
-import Hotkey
+#import Hotkey
 #import Contador
 
 def AltHK():
@@ -48,11 +48,28 @@ def AltHK1():
 
 janela = Tk()
 janela.title("")
+
+# geometry
+
+TelaX = janela.winfo_screenwidth()
+TelaY = janela.winfo_screenheight()
+JanelaX = TelaX/3
+JanelaY = TelaY/3
+Janelax = TelaX/2 - JanelaX/2
+Janelay = TelaY/2 -(JanelaY/2 + 80)
+janela.geometry("%dx%d+%d+%d" % (JanelaX, JanelaY, Janelax, Janelay))
+
 #janela.resizable(width='false', height='false')
-HKbut = Button(janela, text='Alterar Hotkeys', command=AltHK)
+HKbut = Button(janela, text='Alterar Hotkeys', command=lambda: AltHK())
+HKbut.pack()
 HKbut.grid(column=1, row=4, padx=10, pady=10)
-Caixa_HK = Entry(janela, width=53 )
+
+Xa = StringVar(janela, "Teste")
+
+Caixa_HK = Entry(janela, width= 40, textvariable=Xa)
+#Caixa_HK.pack()
 Caixa_HK.grid(column=1, row=3, padx=10, pady=10)
+
 
 with open('Hotkey.txt','r') as f:
         HKp = f.readline()
@@ -61,8 +78,12 @@ with open('Hotkey.txt','r') as f:
         HKp = HKp[:-1]  #Limpando o '\n' das linhas em "Hotkey.txt"
         HKm = HKm[:-1]
 
-HKs = ("As Hotkeys gravadas são:\n" + HKp + " para +\n" + HKm + " para -\n" + HKz + " para zerar.")
+HKs = StringVar(janela, "As Hotkeys gravadas são:\n" + "Cont+ :" + HKp + "\nCont-  :" + HKm + "\nCont0 :" + HKz )
 #asd
-HKs_orientacao = Label(janela, text=HKs, relief="solid")
+HKs_orientacao = Label(janela, borderwidth=5, relief="solid", background="light blue", font="Arial 14", textvariable=HKs)
 HKs_orientacao.grid(column=1, row=2, padx=20, pady=2)
 janela.mainloop()
+
+
+# criar botao para alterar as HKs, liberando o state de disable para normal, cada linha para uma HK.
+# separar HKs e contagem em frames = Frame(janela) relief SUNKEN
