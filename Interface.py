@@ -17,7 +17,8 @@ def AltHK():
     Caixa_HK["state"]= 'normal'
     Caixa_HK.grid(column=1, row=3, padx=10, pady=10)
 
-    Bt = Button(janela, text="Próximo", command=lambda: AltHK1(Caixa_HK)).grid(row= 4, column=4)
+    Bt = Button(janela, text="Próximo",
+                command=lambda: AltHK1(Caixa_HK)).grid(row= 4, column=4)
 
     # Gravando Hotkey +
     HKs_orientacao["text"] =("Digite a Hotkey que deseja gravar para aumentar a contagem.\nUse o modelo : ' <ctrl>+<shift>+x '")
