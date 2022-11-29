@@ -6,12 +6,12 @@ from tkinter import *
 class Frames(Frame):
     def __init__(self, master):
         super().__init__()
-
+    # Definir formatação das frames
 
 class linhaHKs(Label):
     def __init__(self, master):
         super().__init__()
-
+    # Definir formatação das linhas de alteração das HKs
 
 # Janela
 janela = Tk()
@@ -24,9 +24,13 @@ FrameHKs = Frame(janela,
                  relief="sunken",
                  padx=30,
                  pady=8)
-TituloHKs = Label(FrameHKs, text="Teste")
+TituloHKs = Label(FrameHKs, text="HOTKEYS GRAVADAS")
 TituloHKs.pack()
 FrameHKs.grid(column=0, row=0, padx=10, pady=2)
+
+# Frame Contador
+FrameCont = Frames(janela)
+
 
 # Geometry
 TelaX = janela.winfo_screenwidth()
