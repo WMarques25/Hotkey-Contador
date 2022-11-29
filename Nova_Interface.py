@@ -30,7 +30,7 @@ FrameHKs.grid(column=0, row=0, padx=10, pady=2)
 
 # Frame Contador
 FrameCont = Frames(janela)
-
+FrameCont.grid(column=1, row=0,padx=10, pady=2)
 
 # Geometry
 TelaX = janela.winfo_screenwidth()
