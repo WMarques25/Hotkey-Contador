@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 from os import system
 from pynput import keyboard
-from Interface import jane
 
 
     
